@@ -17,6 +17,11 @@ int main(void)
 
     // function to calculate average word length per 100 words
     float letters = word_length(text, text_length);
+
+    float score = calculate_read_level(sentences, letters);
+    printf("This text scores %f in readability\n");
+
+    return 0;
 }
 
 float count_sentences(string text, int text_length)
