@@ -19,7 +19,7 @@ int main(void)
     float letters = word_length(text, text_length);
 
     float score = calculate_read_level(sentences, letters);
-    printf("This text scores %f in readability\n");
+    printf("This text scores %f in readability\n", score);
 
     return 0;
 }
