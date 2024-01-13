@@ -34,13 +34,13 @@ float count_sentences(string text, int text_length)
         {
             if (i > 0 & text[i - 1] != '.')
                 sentences++;
-        } else if (isspace(text[i])) 
+        } else if (isspace(text[i]))
         {
             words++;
         }
     }
 
-    return (sentences * 100 / words);
+    return (words / sentences * 100);
 }
 
 float word_length(string text, int text_length)
@@ -73,5 +73,5 @@ float word_length(string text, int text_length)
 
 float calculate_read_level(float sentences, float word_length)
 {
-    return (0.0588 * word_length - 0.269 * sentences - 15.8);
+    return (0.0588 * word_length - 0.296 * sentences - 15.8);
 }
