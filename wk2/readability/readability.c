@@ -33,14 +33,15 @@ int main(void)
 
 float count_sentences(string text, int text_length)
 {
-    int sentences = 0; // Start at one, because even if there is no punctuation, there is one sentence
+    int sentences = 1; // Start at one, because even if there is no punctuation, there is one sentence
     int words = 1;
 
     for (int i = 0; i < text_length - 1; i++)
     {
         if (text[i] == '.' || text[i] == '!' || text[i] == '?')
         {
-            sentences++;
+            if (i > 0 & text[i - 1] != '.')
+                sentences++;
         } else if (isspace(text[i]))
         {
             words++;
