@@ -19,14 +19,14 @@ int main(void)
     float letters = word_length(text, text_length);
 
     float score = calculate_read_level(sentences, letters);
-    printf("This text scores %f in readability\n\nMade up of %f sentences and %f letters", score, sentences, letters);
+    printf("This text scores %f in readability\n\nMade up of %f sentences and %f letters\n\n", score, sentences, letters);
 
     return 0;
 }
 
 float count_sentences(string text, int text_length)
 {
-    int sentences = 0;
+    int sentences = 1; // Start at one, because even if there is no punctuation, there is one sentence
     for (int i = 0; i < text_length; i++)
     {
         if (text[i] == '.')
