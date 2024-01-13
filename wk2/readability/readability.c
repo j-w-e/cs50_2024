@@ -47,9 +47,7 @@ float word_length(string text, int text_length)
 {
     int letters = 0;
     int spaces = 0;
-    char c = text[text_length];
-    char d = text[text_length - 1];
-
+    
     for (int i = 0; i < text_length - 1; i++)
     {
         if (isalpha(text[i]))
