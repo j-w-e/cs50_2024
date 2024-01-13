@@ -21,7 +21,7 @@ int score(string word)
 
     for (int i = 0; i < word_length; i++)
     {
-        char letter = toupper(word[i]);
+        char letter = to_upper(word[i]);
         score += LETTER_VALUES[letter - 65];
     }
     return (score);
