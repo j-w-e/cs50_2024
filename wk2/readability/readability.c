@@ -40,7 +40,7 @@ float count_sentences(string text, int text_length)
         }
     }
 
-    return (sentences * 100 / words);
+    return (sentences * 100.0 / words);
 }
 
 float word_length(string text, int text_length)
@@ -68,7 +68,7 @@ float word_length(string text, int text_length)
         spaces++;
     }
 
-    return (letters / spaces * 100);
+    return (letters / spaces * 100.0);
 }
 
 float calculate_read_level(float sentences, float word_length)
