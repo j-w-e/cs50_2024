@@ -44,7 +44,7 @@ float word_length(string text, int text_length)
     int letters = 0;
     int spaces = 0;
 
-    for (int i = 0; i < text_length - 1; i++)
+    for (int i = 0; i < text_length - 2; i++)
     {
         if (isalpha(text[i]))
             letters++;
@@ -52,12 +52,12 @@ float word_length(string text, int text_length)
             spaces++;
     }
     
-    if (isalpha(text[text_length]))
+    if (isalpha(text[text_length - 1]))
     {
         letters++;
         spaces++;
     }
-    else if (ispunct(text[text_length])) 
+    else if (ispunct(text[text_length - 1])) 
     {
         spaces++;
     }
