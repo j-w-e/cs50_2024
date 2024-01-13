@@ -10,8 +10,18 @@ int score(string word);
 int main(void)
 {
     string word1 = get_string("Player 1: ");
-    /* string word2 = get_string("Player 2: "); */
-    printf("That scores %i\n", score(word1));
+    string word2 = get_string("Player 2: ");
+
+    score1 = score(word1);
+    score2 = score(word2);
+
+    if (score1 > score2)
+        printf("Player 1 wins!");
+    else if (score1 < score2)
+        printf("Player 2 wins!");
+    else
+        printf("Tie!");
+
     return 0;
 }
 
@@ -23,7 +33,8 @@ int score(string word)
     for (int i = 0; i < word_length; i++)
     {
         char letter = toupper(word[i]);
-        score += LETTER_VALUES[letter - 65];
+        if (!(letter < 'A' || letter > 'Z'))
+            score += LETTER_VALUES[letter - 65];
     }
     return (score);
 }
