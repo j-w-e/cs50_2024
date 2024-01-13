@@ -12,8 +12,8 @@ int main(void)
     string word1 = get_string("Player 1: ");
     string word2 = get_string("Player 2: ");
 
-    score1 = score(word1);
-    score2 = score(word2);
+    int score1 = score(word1);
+    int score2 = score(word2);
 
     if (score1 > score2)
         printf("Player 1 wins!");
