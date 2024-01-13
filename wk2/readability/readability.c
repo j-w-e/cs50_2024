@@ -47,7 +47,7 @@ float word_length(string text, int text_length)
 {
     int letters = 0;
     int spaces = 0;
-    
+
     for (int i = 0; i < text_length - 1; i++)
     {
         if (isalpha(text[i]))
@@ -66,7 +66,7 @@ float word_length(string text, int text_length)
         spaces++;
     }
 
-    return (letters / spaces * 100.0);
+    return ( (float) letters / spaces * 100);
 }
 
 float calculate_read_level(float sentences, float word_length)
