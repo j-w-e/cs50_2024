@@ -19,7 +19,13 @@ int main(void)
     float letters = word_length(text, text_length);
 
     float score = calculate_read_level(sentences, letters);
-    printf("This text scores %f in readability\n\nMade up of %f sentences and %f letters\n\n", score, sentences, letters);
+
+    if (score < 1.5)
+        printf("Before Grade 1");
+    else if (score >= 15.5)
+        printf("Grade 16+");
+    else 
+        printf("Grade %.0f", score)
 
     return 0;
 }
