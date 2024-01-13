@@ -40,7 +40,7 @@ float count_sentences(string text, int text_length)
         }
     }
 
-    return (words / sentences * 100);
+    return (sentences * 100 / words);
 }
 
 float word_length(string text, int text_length)
