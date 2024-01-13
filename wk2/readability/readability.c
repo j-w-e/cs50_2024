@@ -21,11 +21,11 @@ int main(void)
     float score = calculate_read_level(sentences, letters);
 
     if (score < 1.5)
-        printf("Before Grade 1");
+        printf("Before Grade 1\n");
     else if (score >= 15.5)
-        printf("Grade 16+");
+        printf("Grade 16+\n");
     else
-        printf("Grade %.0f", score);
+        printf("Grade %.0f\n", score);
 
     return 0;
 }
