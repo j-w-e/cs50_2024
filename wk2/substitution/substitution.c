@@ -70,7 +70,12 @@ char encode(char c, string key)
 
     bool isupper = isupper(c);
 
-    printf("%c", key[c - 65]);
+    if (isupper)
+        return (key[c - 65])
+
+    c = toupper(c);
+    c = key[c - 65];
+    c = tolower(c);
 
     return (c);
 }
