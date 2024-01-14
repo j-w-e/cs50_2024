@@ -27,6 +27,7 @@ string replace(string word, int word_length)
     {
         word[i] = leetify(word[i]);
     }
+    return word;
 }
 
 char leetify(char c)
