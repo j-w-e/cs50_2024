@@ -75,9 +75,7 @@ char encode(char c, string key)
         return (toupper(key[c - 65]));
     }
 
-    c = toupper(c);
-    c = key[c - 65];
-    c = tolower(c);
+    c = tolower(key[toupper(c) - 65]);
 
     return (c);
 }
