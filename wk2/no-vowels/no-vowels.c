@@ -10,7 +10,7 @@ int main(int argc, string argv[])
 {
     if (argc != 2)
     {
-        printf("Usage: ./no-vowels word");
+        printf("Usage: ./no-vowels word\n");
         return 1;
     }
 
