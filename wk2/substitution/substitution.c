@@ -70,5 +70,7 @@ char encode(char c, string key)
 
     bool isupper = isupper(c);
 
+    printf("%c", key[c - 65]);
+
     return (c);
 }
