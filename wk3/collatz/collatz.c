@@ -21,7 +21,7 @@ int main(int argc, string argv[])
 
 int collatz(int number, int steps)
 {
-    if (number = 1)
+    if (number == 1)
         return (steps);
 
     if (number % 2)
