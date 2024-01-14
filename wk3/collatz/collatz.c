@@ -12,8 +12,9 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    int collatz_value = collatz(atoi(argv[1]), 0);
-    printf("The collatz value of %i is %i", argv[1], collatz_value);
+    int number = atoi(argv[1]);
+    int collatz_value = collatz(number, 0);
+    printf("The collatz value of %i is %i", number, collatz_value);
 
     return 0;
 }
