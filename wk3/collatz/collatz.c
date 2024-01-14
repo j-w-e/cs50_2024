@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int collatz(int number, int steps);
+int collatz(int n, int steps);
 
 int main(int argc, string argv[])
 {
@@ -19,12 +19,12 @@ int main(int argc, string argv[])
     return 0;
 }
 
-int collatz(int number, int steps)
+int collatz(int n, int steps)
 {
-    if (number == 1)
+    if (n == 1)
         return (steps);
 
-    if (number % 2)
+    if (n % 2)
         collatz(3 * n + 1, steps + 1);
     else 
         collatz(n / 2, steps + 1);
