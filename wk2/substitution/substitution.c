@@ -37,16 +37,17 @@ int is_key_invalid(string key)
         return 1; // if key is not 26 characters long
 
     string is_each_letter_used = "00000000000000000000000000"; // 26 zeros
-printf("%s is key\n", key);
+
     for (int i = 0; i < keylength; i++)
     {
         if (!isalpha(key[i]))
             return 2; // key must only contain letters
         char c = toupper(key[i]);
+        int d = is_each_letter_used[c - 64];
+        int e = is_each_letter_used[c - 65];
         if (is_each_letter_used[c - 64])
             return 3;
         is_each_letter_used[c - 64] = 1;
-        printf("%s\n", is_each_letter_used);
     }
 
     return 0; // key is valid
