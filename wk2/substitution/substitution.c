@@ -43,11 +43,10 @@ int is_key_invalid(string key)
         if (!isalpha(key[i]))
             return 2; // key must only contain letters
         char c = toupper(key[i]);
-        int d = c - 64;
-        int e = c - 65;
-        if (is_each_letter_used[c - 64])
+        char d = is_each_letter_used[c - 65];
+        if (is_each_letter_used[c - 65])
             return 3;
-        is_each_letter_used[c - 64] = 1;
+        is_each_letter_used[c - 65] = 1;
     }
 
     return 0; // key is valid
