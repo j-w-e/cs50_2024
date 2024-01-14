@@ -25,9 +25,9 @@ int collatz(int n, int steps)
         return (steps);
 
     if (n % 2)
-        collatz(3 * n + 1, steps + 1);
+        steps = collatz(3 * n + 1, steps + 1);
     else
-        collatz(n / 2, steps + 1);
+        steps = collatz(n / 2, steps + 1);
 
     return steps;
 }
