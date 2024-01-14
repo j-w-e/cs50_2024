@@ -68,9 +68,7 @@ char encode(char c, string key)
     if (!isalpha(c))
         return (c);
 
-    bool isupper = isupper(c);
-
-    if (isupper)
+    if (isupper(c))
         return (key[c - 65]);
 
     c = toupper(c);
