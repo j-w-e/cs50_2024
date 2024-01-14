@@ -11,12 +11,9 @@ bool valid(string password);
 int main(int argc, string argv[])
 {
     /* string password = get_string("Enter your password: "); */
-    if (argc == 2)
-    {
-        string password = argv[1];
-    }
-    else
+    if (argc != 2)
         return 1;
+    string password = argv[1];
 
     if (valid(password))
     {
