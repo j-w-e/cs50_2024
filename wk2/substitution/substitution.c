@@ -71,7 +71,7 @@ char encode(char c, string key)
     bool isupper = isupper(c);
 
     if (isupper)
-        return (key[c - 65])
+        return (key[c - 65]);
 
     c = toupper(c);
     c = key[c - 65];
