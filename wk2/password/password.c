@@ -7,13 +7,9 @@
 
 bool valid(string password);
 
-/* int main(void) */
-int main(int argc, string argv[])
+int main(void)
 {
-    /* string password = get_string("Enter your password: "); */
-    if (argc != 2)
-        return 1;
-    string password = argv[1];
+    string password = get_string("Enter your password: ");
 
     if (valid(password))
     {
