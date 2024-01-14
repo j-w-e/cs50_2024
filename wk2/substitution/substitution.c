@@ -4,6 +4,7 @@
 #include <string.h>
 
 int is_key_invalid(string key);
+string encode(string plaintext, string key);
 
 int main(int argv, string argc[])
 {
@@ -26,7 +27,9 @@ int main(int argv, string argc[])
         return 1;
     }
 
-    printf("key is valid\n");
+    string plaintext = get_string("plaintext:  ");
+
+    string cyphertext = encode(plaintext);
 }
 
 int is_key_invalid(string key)
@@ -50,4 +53,9 @@ int is_key_invalid(string key)
     }
 
     return 0; // key is valid
+}
+
+string encode(string plaintext, string key)
+{
+    return (plaintext);
 }
