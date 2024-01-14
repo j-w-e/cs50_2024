@@ -36,14 +36,14 @@ int is_key_invalid(string key)
     if (keylength != 26)
         return 1; // if key is not 26 characters long
 
-    string is_each_letter_used = "00000000000000000000000000"; // 26 zeros
+    int is_each_letter_used[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // 26 zeros
 
     for (int i = 0; i < keylength; i++)
     {
         if (!isalpha(key[i]))
             return 2; // key must only contain letters
         char c = toupper(key[i]);
-        int d = is_each_letter_used[c - 65] - '0';
+        int d = c - 65;
         if (is_each_letter_used[d])
             return 3;
         is_each_letter_used[d] = '1';
