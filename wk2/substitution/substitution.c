@@ -29,7 +29,7 @@ int main(int argv, string argc[])
 
     string plaintext = get_string("plaintext:  ");
 
-    string cyphertext = encode(plaintext);
+    string cyphertext = encode(plaintext, argc[1]);
 }
 
 int is_key_invalid(string key)
