@@ -14,7 +14,7 @@ int main(int argc, string argv[])
 
     int number = atoi(argv[1]);
     int collatz_value = collatz(number, 0);
-    printf("The collatz value of %i is %i", number, collatz_value);
+    printf("The collatz value of %i is %i\n", number, collatz_value);
 
     return 0;
 }
