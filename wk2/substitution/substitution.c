@@ -72,9 +72,7 @@ char encode(char c, string key)
 
     if (isupper(c))
     {
-        char returnvalue = key[c - 65];
-        return returnvalue;
-        // return (key[c - 65]);
+        return (toupper(key[c - 65]));
     }
 
     c = toupper(c);
