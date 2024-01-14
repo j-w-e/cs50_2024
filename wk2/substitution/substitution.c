@@ -4,7 +4,7 @@
 #include <string.h>
 
 int is_key_invalid(string key);
-string encode(string plaintext, string key);
+string encode(char c, string key);
 
 int main(int argv, string argc[])
 {
@@ -28,8 +28,16 @@ int main(int argv, string argc[])
     }
 
     string plaintext = get_string("plaintext:  ");
+    string ciphertext = plaintext;
 
-    string cyphertext = encode(plaintext, argc[1]);
+    int text_length = strlen(plaintext);
+    for (int i = 0; i < text_length; i++) 
+    {
+        ciphertext[i] = encode(ciphertext[i], argc[1]);
+    }
+
+    printf("ciphertext: %s\n", ciphertext);
+    return 0;
 }
 
 int is_key_invalid(string key)
@@ -55,7 +63,12 @@ int is_key_invalid(string key)
     return 0; // key is valid
 }
 
-string encode(string plaintext, string key)
+string encode(char c, string key)
 {
-    return (plaintext);
+    if (!isalpha(c))
+        return (c);
+
+    bool isupper = isupper(c);
+
+    return (c);
 }
