@@ -1,4 +1,4 @@
-/* #include <cs50.h> */
+#include <cs50.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -26,7 +26,7 @@ int collatz(int n, int steps)
 
     if (n % 2)
         collatz(3 * n + 1, steps + 1);
-    else 
+    else
         collatz(n / 2, steps + 1);
 
     return steps;
