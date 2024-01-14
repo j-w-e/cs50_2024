@@ -28,7 +28,7 @@ int main(int argv, string argc[])
     }
 
     string plaintext = get_string("plaintext:  ");
-    string ciphertext;
+    string ciphertext = plaintext;
 
     int text_length = strlen(plaintext);
     for (int i = 0; i < text_length; i++)
