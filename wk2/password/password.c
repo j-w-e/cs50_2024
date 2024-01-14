@@ -1,4 +1,5 @@
 // Check that a password has at least one lowercase letter, uppercase letter, number and symbol
+// just walks through the proposed password, checking for the existence of each of the elements
 
 #include <cs50.h>
 #include <ctype.h>
@@ -26,9 +27,9 @@ bool valid(string password)
 {
     int passlength = strlen(password);
     bool number = false, upper = false, lower = false, symbol = false;
-    for (int i = 0; i < passlength; i++) 
+    for (int i = 0; i < passlength; i++)
     {
-        if (isupper(password[i])) 
+        if (isupper(password[i]))
         {
             upper = true;
         }
@@ -36,11 +37,11 @@ bool valid(string password)
         {
             lower = true;
         }
-        else if (isdigit(password[i])) 
+        else if (isdigit(password[i]))
         {
             number = true;
         }
-        else if (ispunct(password[i])) 
+        else if (ispunct(password[i]))
         {
             symbol = true;
         }
