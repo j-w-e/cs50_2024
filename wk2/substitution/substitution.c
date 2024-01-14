@@ -70,11 +70,11 @@ char encode(char c, string key)
     if (!isalpha(c))
         return (c);
 
-    int d = isupper(c);
-
     if (isupper(c))
     {
-        return (key[c - 65]);
+        char returnvalue = key[c - 65];
+        return returnvalue;
+        // return (key[c - 65]);
     }
 
     c = toupper(c);
