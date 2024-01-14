@@ -20,12 +20,12 @@ int main(void)
         if (isalpha(text[i]))
             letters++;
          else if (isspace(text[i]))
-                words++:
+                words++;
          else if (text[i] == '.' || text[i] == '!' || text[i] == '?')
                   sentences++;
     }
-    sentences =  (sentences * 100.0 / words);
-    letters = ( (float) letters / spaces * 100);
+    sentences =  sentences * 100.0 / words;
+    letters = (float) letters / words * 100;
 
     float score = calculate_read_level(sentences, letters);
 
