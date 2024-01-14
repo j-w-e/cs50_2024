@@ -1,19 +1,20 @@
 // Check that a password has at least one lowercase letter, uppercase letter, number and symbol
 
 #include <cs50.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
 bool valid(string password);
 
-int main(void)
-/* int main(int argc, string argv[]) */
+/* int main(void) */
+int main(int argc, string argv[])
 {
-    string password = get_string("Enter your password: ");
-    /* if (argc == 2) */
-        /* string password = argv[1]; */
-    /* else */
-        /* return 1; */
+    /* string password = get_string("Enter your password: "); */
+    if (argc == 2)
+        string password = argv[1];
+    else
+        return 1;
 
     if (valid(password))
     {
