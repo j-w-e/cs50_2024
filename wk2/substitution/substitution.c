@@ -28,12 +28,12 @@ int main(int argv, string argc[])
     }
 
     string plaintext = get_string("plaintext:  ");
-    string ciphertext = plaintext;
+    string ciphertext;
 
     int text_length = strlen(plaintext);
-    for (int i = 0; i < text_length; i++) 
+    for (int i = 0; i < text_length; i++)
     {
-        ciphertext[i] = encode(ciphertext[i], argc[1]);
+        ciphertext[i] = encode(plaintext[i], argc[1]);
     }
 
     printf("ciphertext: %s\n", ciphertext);
