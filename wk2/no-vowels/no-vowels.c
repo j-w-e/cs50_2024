@@ -46,5 +46,5 @@ char leetify(char c)
             c = '0';
             break;
     }
-    return c
+    return c;
 }
