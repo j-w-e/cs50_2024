@@ -33,7 +33,8 @@ int main(int argv, string argc[])
     int text_length = strlen(plaintext);
     for (int i = 0; i < text_length; i++)
     {
-        ciphertext[i] = encode(plaintext[i], argc[1]);
+        char c = plaintext[i];
+        ciphertext[i] = encode(c, argc[1]);
     }
 
     printf("ciphertext: %s\n", ciphertext);
