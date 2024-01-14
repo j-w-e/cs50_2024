@@ -12,7 +12,9 @@ int main(int argc, string argv[])
 {
     /* string password = get_string("Enter your password: "); */
     if (argc == 2)
+    {
         string password = argv[1];
+    }
     else
         return 1;
 
