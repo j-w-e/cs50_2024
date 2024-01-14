@@ -44,9 +44,9 @@ int is_key_invalid(string key)
             return 2; // key must only contain letters
         char c = toupper(key[i]);
         int d = is_each_letter_used[c - 65] - '0';
-        if (is_each_letter_used[c - 65] - '0')
+        if (is_each_letter_used[d])
             return 3;
-        is_each_letter_used[c - 65] = '1';
+        is_each_letter_used[d] = '1';
     }
 
     return 0; // key is valid
