@@ -13,7 +13,7 @@ int main(int argv, string argc[])
         return 1;
     }
 
-    int key_status = is_key_invalid(argc[2]);
+    int key_status = is_key_invalid(argc[1]);
 
     if (key_status)
     {
