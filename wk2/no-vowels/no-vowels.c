@@ -32,7 +32,8 @@ string replace(string word, int word_length)
 
 char leetify(char c)
 {
-    switch (tolower(c)) {
+    switch (tolower(c))
+    {
         case 'a':
             c = '6';
             break;
