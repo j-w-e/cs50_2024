@@ -70,7 +70,6 @@ bool vote(string name)
         if (!strcmp(candidates[i].name, name))
         {
             candidates[i].votes++;
-            printf("a vote for %s who now has %i votes\n", candidates[i].name, candidates[i].votes);
             return true;
         }
     }
