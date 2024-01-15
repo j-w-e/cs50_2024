@@ -1,11 +1,11 @@
-sort1 uses: selection
+sort1 uses: bubble
 
-How do you know?: TODO
+How do you know?: performs slower than sort 2, on par with sort3, except for reversed data when it is noticably slower
 
 sort2 uses: merge
 
 How do you know?: it is fastest to sort random data
 
-sort3 uses: bubble
+sort3 uses: selection
 
 How do you know?: TODO
