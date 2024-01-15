@@ -1,6 +1,6 @@
 sort1 uses: bubble
 
-How do you know?: performs slower than sort 2, on par with sort3, except for reversed data when it is noticably slower
+How do you know?: performs slower than sort 2, in the same order of magnitude as sort 3, except for reversed data when it is noticably slower
 
 sort2 uses: merge
 
@@ -8,4 +8,4 @@ How do you know?: it is fastest to sort random data
 
 sort3 uses: selection
 
-How do you know?: TODO
+How do you know?: process of elimination
