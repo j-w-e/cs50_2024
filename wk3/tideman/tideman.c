@@ -193,7 +193,7 @@ int is_cycle(int winner, int loser, int endpoint)
         return true;
     }
 
-    if (locked[winner, loser] == false)
+    if (locked[winner][loser] == false)
     {
         return false;
     }
