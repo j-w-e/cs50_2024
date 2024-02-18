@@ -198,7 +198,7 @@ int is_cycle(int winner, int loser, int endpoint)
         return false;
     }
 
-    for (int i = 0; i < candidate_count, i != loser; i++)
+    for (int i = 0; i < candidate_count && i != loser; i++)
     {
         if (!locked[loser, i])
             continue;
@@ -231,7 +231,7 @@ void print_winner(void)
     for (int i = 0; i < candidate_count; i++)
     {
         edges[i] = 0;
-        for (int j = 0; j != i; j < candidate_count; j++)
+        for (int j = 0; j != i && j < candidate_count; j++)
         {
             if (locked[i][j])
             {
