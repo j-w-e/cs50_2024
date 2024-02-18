@@ -240,13 +240,13 @@ void print_winner(void)
         }
     }
     int winner = 0;
-    for (int i = 1; i < candidate_count; i++) 
+    for (int i = 1; i < candidate_count; i++)
     {
-        if (edges[i] > edges[i-1]) 
+        if (edges[i] > edges[i-1])
         {
             winner = i;
         }
     }
-    printf("The winner is %s\n", candidates[winner]);
+    printf("%s\n", candidates[winner]);
     return;
 }
