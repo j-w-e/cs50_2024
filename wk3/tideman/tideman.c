@@ -235,7 +235,7 @@ void print_winner(void)
         {
             if (locked[i][j])
             {
-                edges++;
+                edges[i]++;
             }
         }
     }
