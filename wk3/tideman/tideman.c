@@ -200,7 +200,7 @@ int is_cycle(int winner, int loser, int endpoint)
 
     for (int i = 0; i < candidate_count && i != loser; i++)
     {
-        if (!locked[loser, i])
+        if (!locked[loser][i])
             continue;
         if (!is_cycle(loser, i, endpoint))
             return false;
