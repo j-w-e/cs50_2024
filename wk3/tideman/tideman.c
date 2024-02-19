@@ -193,9 +193,15 @@ int is_cycle(int winner, int loser, int endpoint)
         return true;
     }
 
-    if (locked[winner][loser] == false)
+    // FIXME this is where the thing breaks
+    // could possibly add a check for if endpoint is winner, then ignore this?
+    // because I think this returns false too early
+    if (endpoint != loser)
     {
-        return false;
+        if (locked[winner][loser] == false)
+        {
+            return false;
+        }
     }
 
     for (int i = 0; i < candidate_count && i != loser; i++)
@@ -211,7 +217,6 @@ int is_cycle(int winner, int loser, int endpoint)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    // TODO
     for (int i = 0; i < pair_count; i++)
     {
         // here I need to check if this creates a cycle
