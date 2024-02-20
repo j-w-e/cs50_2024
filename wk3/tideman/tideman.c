@@ -32,7 +32,7 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-int is_cycle(int winner, int loser, int endpoint);
+bool is_cycle(int winner, int loser, int endpoint, int depth);
 
 int main(int argc, string argv[])
 {
@@ -53,6 +53,13 @@ int main(int argc, string argv[])
     for (int i = 0; i < candidate_count; i++)
     {
         candidates[i] = argv[i + 1];
+    }
+    // Populate array of candidates
+    candidate_count = 4;
+    if (candidate_count > MAX)
+    {
+        printf("Maximum number of candidates is %i\n", MAX);
+        return 2;
     }
 
     // Clear graph of locked in pairs
@@ -175,43 +182,24 @@ void sort_pairs(void)
 // | A | - | 1 |   |
 // | B |   | - |   |
 // | C | 1 |   | - |
-
-// And here, DA would create a cycle
-// |   | A | B | C | D |
-// | A | - | 1 |   |   |
-// | B |   | - |   | 1 |
-// | C | 1 |   | - |   |
-// | D |   |   |   |   |
-// Look at lock[i][j]. If true:
-//      look at lock[j][k], for all relevant values of k
-//      if true, recurse.
-//      if false, return false
-int is_cycle(int winner, int loser, int endpoint)
+bool is_cycle(int winner, int loser, int endpoint, int depth)
 {
-    if (loser == endpoint)
+    if (locked[loser][endpoint])
     {
         return true;
     }
 
-    // FIXME this is where the thing breaks
-    // could possibly add a check for if endpoint is winner, then ignore this?
-    // because I think this returns false too early
-    if (endpoint != loser)
+    for (int i = 0; i < candidate_count; i++)
     {
-        if (locked[winner][loser] == false)
+        if (i != loser && locked[loser][i])
         {
-            return false;
+            if (is_cycle(loser, i, endpoint, depth + 1))
+            {
+                return true;
+            }
         }
     }
-
-    for (int i = 0; i < candidate_count && i != loser; i++)
-    {
-        if (!locked[loser][i])
-            continue;
-        if (!is_cycle(loser, i, endpoint))
-            return false;
-    }
-    return true;
+    return false;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
@@ -220,7 +208,7 @@ void lock_pairs(void)
     for (int i = 0; i < pair_count; i++)
     {
         // here I need to check if this creates a cycle
-        if (!is_cycle(pairs[i].winner, pairs[i].loser, pairs[i].winner))
+        if (!is_cycle(pairs[i].winner, pairs[i].loser, pairs[i].winner, 0))
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
@@ -247,7 +235,7 @@ void print_winner(void)
     int winner = 0;
     for (int i = 1; i < candidate_count; i++)
     {
-        if (edges[i] > edges[i-1])
+        if (edges[i] > edges[i - 1])
         {
             winner = i;
         }
