@@ -1,6 +1,5 @@
 #include "cs50.h"
 #include <ctype.h>
-#include <math.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -25,13 +24,18 @@ int main(void)
 
 int convert(string input)
 {
-    for (int i = strlen(input) - 1; i >= 0; i--)
+    int value = 0;
+    int input_len = strlen(input);
+    if (input_len == 1)
     {
-        // TODO !
-        // THIS is where I need to take each character, convert to an int
-        // and then add that to the return value
-        // automatically adjusting for the right tens column
+        value = input[0] - 48;
     }
-    printf("\n");
-    return 0;
+    else
+    {
+        value = input[input_len - 1] - 48;
+        input[input_len - 1] = '\0';
+        value = value + 10 * convert(input);
+    }
+
+    return value;
 }

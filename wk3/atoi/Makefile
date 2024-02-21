@@ -12,3 +12,7 @@ OBJS = $(SRCS:.c=.o)
 $(EXE): $(OBJS)
 		mkdir -p $(BUILD)
 		$(CC) $(CFLAGS) -o $(BUILD)$@ $(OBJS) $(LDLIBS)
+
+
+clean:
+		rm *.o build/*
