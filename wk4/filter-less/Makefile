@@ -4,4 +4,4 @@ filter:
 
 
 clean:
-		rm *.o filter
+		rm -f *.o filter

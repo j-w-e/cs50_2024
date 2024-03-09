@@ -1,6 +1,8 @@
 #include "helpers.h"
 #include <math.h>
 
+void add_rgb_values(WORD *red, WORD *green, WORD *blue, int height, int width, RGBTRIPLE image[height][width], int row, int col);
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
