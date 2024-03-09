@@ -1,7 +1,8 @@
 #include "helpers.h"
 #include <math.h>
 
-void add_rgb_values(WORD *red, WORD *green, WORD *blue, int height, int width, RGBTRIPLE image[height][width], int row, int col);
+void add_rgb_values(WORD *red, WORD *green, WORD *blue, int height, int width, RGBTRIPLE image[height][width], int row,
+                    int col);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -62,23 +63,27 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             WORD red = image[i][j].rgbtRed, green = image[i][j].rgbtGreen, blue = image[i][j].rgbtBlue;
-            if (i == height - 1) {
+            if (i == height - 1)
+            {
                 // if we are bottom row, far col, add just cols left and up
-                if (j == width - 1) {
+                if (j == width - 1)
+                {
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j - 1);
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j);
                     add_rgb_values(&red, &green, &blue, height, width, image, i, j - 1);
                     divisor = 4;
                 }
                 // if we are bottom row, first col, add just cols right and up
-                else if (j == 0) {
+                else if (j == 0)
+                {
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j);
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j + 1);
                     add_rgb_values(&red, &green, &blue, height, width, image, i, j + 1);
                     divisor = 4;
                 }
                 // if we are bottom row, any other col, add cols left, up, and right
-                else {
+                else
+                {
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j - 1);
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j);
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j + 1);
@@ -87,23 +92,27 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     divisor = 6;
                 }
             }
-             else if (i == 0) {
+            else if (i == 0)
+            {
                 // if we are top row, far col, add just cols left and down
-                if (j == width - 1) {
+                if (j == width - 1)
+                {
                     add_rgb_values(&red, &green, &blue, height, width, image, i, j - 1);
                     add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j - 1);
                     add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j);
                     divisor = 4;
                 }
                 // if we are top row, first col, add just cols right and down
-                else if (j == 0) {
+                else if (j == 0)
+                {
                     add_rgb_values(&red, &green, &blue, height, width, image, i, j + 1);
                     add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j);
                     add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j + 1);
                     divisor = 4;
                 }
                 // if we are top row, any other col, add cols left, down, and right
-                else {
+                else
+                {
                     add_rgb_values(&red, &green, &blue, height, width, image, i, j - 1);
                     add_rgb_values(&red, &green, &blue, height, width, image, i, j + 1);
                     add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j - 1);
@@ -111,7 +120,33 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j + 1);
                     divisor = 6;
                 }
-            } else {
+            }
+            else
+            {
+                // if we are in any of the middle rows
+                // if we are far col, add just cols up, left and down
+                if (j == width - 1)
+                {
+                    add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j - 1);
+                    add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j);
+                    add_rgb_values(&red, &green, &blue, height, width, image, i, j - 1);
+                    add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j - 1);
+                    add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j);
+                    divisor = 6;
+                }
+                else if (j == 0)
+                {
+                    // if we are first col, add just cols up, right and down
+                    add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j);
+                    add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j + 1);
+                    add_rgb_values(&red, &green, &blue, height, width, image, i, j + 1);
+                    add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j);
+                    add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j + 1);
+                    divisor = 6;
+                }
+                else
+                {
+                    // if we are anywhere in the middle of the image, add all neighbouring pixels
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j - 1);
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j);
                     add_rgb_values(&red, &green, &blue, height, width, image, i - 1, j + 1);
@@ -121,6 +156,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j);
                     add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j + 1);
                     divisor = 9;
+                }
             }
             modified_image[i][j].rgbtRed = red / divisor > 255 ? 255 : round(red / divisor);
             modified_image[i][j].rgbtGreen = green / divisor > 255 ? 255 : round(green / divisor);
@@ -139,7 +175,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
-void add_rgb_values(WORD *red, WORD *green, WORD *blue, int height, int width, RGBTRIPLE image[height][width], int row, int col) {
+void add_rgb_values(WORD *red, WORD *green, WORD *blue, int height, int width, RGBTRIPLE image[height][width], int row,
+                    int col)
+{
     *red += image[row][col].rgbtRed;
     *green += image[row][col].rgbtGreen;
     *blue += image[row][col].rgbtBlue;
