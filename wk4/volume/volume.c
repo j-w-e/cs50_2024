@@ -34,22 +34,14 @@ int main(int argc, char *argv[])
     float factor = atof(argv[3]);
 
     // Copy header from input file to output file
+    uint8_t header[HEADER_SIZE];
+    fread(header, sizeof(header), 1, input);
+    fwrite(header, sizeof(header), 1, output);
+
+    // Read samples from input file and write updated data to output file
     typedef int16_t BYTE;
     BYTE copy_data;
     int byte_size = sizeof(copy_data);
-
-    for (int i = 0; i < HEADER_SIZE; i++)
-    {
-        if (feof(input))
-        {
-            printf("File too short.\n");
-            return 1;
-        }
-        fread(&copy_data, byte_size, 1, input);
-        fwrite(&copy_data, byte_size, 1, output);
-    }
-
-    // Read samples from input file and write updated data to output file
     while (!feof(input))
     {
         fread(&copy_data, byte_size, 1, input);
