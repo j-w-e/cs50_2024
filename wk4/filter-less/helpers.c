@@ -30,10 +30,10 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            /* BYTE originalRed = image[i][j].rgbtRed, originalGreen = image[i][j].rgbtGreen, originalBlue = image[i][j].rgbtBlue; */
-            image[i][j].rgbtRed = round(fmin(.393 * image[i][j].rgbtRed + .769 * image[i][j].rgbtGreen + .189 * image[i][j].rgbtBlue, 255));
-            image[i][j].rgbtGreen = round(fmin(.349 * image[i][j].rgbtRed + .686 * image[i][j].rgbtGreen + .168 * image[i][j].rgbtBlue, 255));
-            image[i][j].rgbtBlue = round(fmin( .272 * image[i][j].rgbtRed + .534 * image[i][j].rgbtGreen + .131 * image[i][j].rgbtBlue, 255));
+            BYTE originalRed = image[i][j].rgbtRed, originalGreen = image[i][j].rgbtGreen, originalBlue = image[i][j].rgbtBlue;
+            image[i][j].rgbtRed = round(fmin(.393 * originalRed + .769 * originalGreen + .189 * originalBlue, 255));
+            image[i][j].rgbtGreen = round(fmin(.349 * originalRed + .686 * originalGreen + .168 * originalBlue, 255));
+            image[i][j].rgbtBlue = round(fmin( .272 * originalRed + .534 * originalGreen + .131 * originalBlue, 255));
         }
     }
 
