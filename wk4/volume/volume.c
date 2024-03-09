@@ -42,9 +42,8 @@ int main(int argc, char *argv[])
     typedef int16_t BYTE;
     BYTE copy_data;
     int byte_size = sizeof(copy_data);
-    while (!feof(input))
+    while (fread(&copy_data, byte_size, 1, input))
     {
-        fread(&copy_data, byte_size, 1, input);
         copy_data *= factor;
         fwrite(&copy_data, byte_size, 1, output);
     }
