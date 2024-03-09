@@ -54,7 +54,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE modified_image[height][width];
 
-    int divisor = 0;
+    float divisor = 0;
 
     // FIXME this is too dark. I probably need to calculate as a WORD, then convert to a BYTE
     for (int i = 0; i < height; i++)
@@ -122,9 +122,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     add_rgb_values(&red, &green, &blue, height, width, image, i + 1, j + 1);
                     divisor = 9;
             }
-            modified_image[i][j].rgbtRed = red / divisor > 255 ? 255 : red / divisor;
-            modified_image[i][j].rgbtGreen = green / divisor > 255 ? 255 : green / divisor;
-            modified_image[i][j].rgbtBlue = blue / divisor > 255 ? 255 : blue / divisor;
+            modified_image[i][j].rgbtRed = red / divisor > 255 ? 255 : round(red / divisor);
+            modified_image[i][j].rgbtGreen = green / divisor > 255 ? 255 : round(green / divisor);
+            modified_image[i][j].rgbtBlue = blue / divisor > 255 ? 255 : round(blue / divisor);
         }
     }
 
