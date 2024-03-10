@@ -189,8 +189,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE modified_image[height][width];
 
-    const int one_less_than_height = height - 1;
-
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -303,12 +301,12 @@ RGBTRIPLE calculate_sopel(NEIGHBOURS neighbouring)
     tmp.gx = -neighbouring.topleft.rgbtRed + neighbouring.topright.rgbtRed;
     tmp.gx += -2 * neighbouring.left.rgbtRed + 2 * neighbouring.right.rgbtRed;
     tmp.gx += -neighbouring.bottomleft.rgbtRed + neighbouring.bottomright.rgbtRed;
-    tmp.gy = -neighbouring.topleft.rgbtRed + neighbouring.bottomright.rgbtRed;
+    tmp.gy = -neighbouring.topleft.rgbtRed + neighbouring.bottomleft.rgbtRed;
     tmp.gy += -2 * neighbouring.top.rgbtRed + 2 * neighbouring.bottom.rgbtRed;
     tmp.gy += -neighbouring.topright.rgbtRed + neighbouring.bottomright.rgbtRed;
-    /* newpixel.rgbtRed = round(fmin(sqrt(tmp.gx ^ 2 + tmp.gy ^ 2), 255)); */
-    interimvalue = tmp.gx ^ 2;
-    interimvalue += tmp.gy ^ 2;
+    /* newpixel.rgbtRed = round(fmin(sqrt(pow(tmp.gx, 2) + pow(tmp.gy, 2)), 255)); */
+    interimvalue = pow(tmp.gx, 2);
+    interimvalue += pow(tmp.gy, 2);
     interimvalue = sqrt(interimvalue);
     interimvalue = fmin(interimvalue, 255);
     newpixel.rgbtRed = round(interimvalue);
@@ -316,12 +314,12 @@ RGBTRIPLE calculate_sopel(NEIGHBOURS neighbouring)
     tmp.gx = -neighbouring.topleft.rgbtGreen + neighbouring.topright.rgbtGreen;
     tmp.gx += -2 * neighbouring.left.rgbtGreen + 2 * neighbouring.right.rgbtGreen;
     tmp.gx += -neighbouring.bottomleft.rgbtGreen + neighbouring.bottomright.rgbtGreen;
-    tmp.gy = -neighbouring.topleft.rgbtGreen + neighbouring.bottomright.rgbtGreen;
+    tmp.gy = -neighbouring.topleft.rgbtGreen + neighbouring.bottomleft.rgbtGreen;
     tmp.gy += -2 * neighbouring.top.rgbtGreen + 2 * neighbouring.bottom.rgbtGreen;
     tmp.gy += -neighbouring.topright.rgbtGreen + neighbouring.bottomright.rgbtGreen;
-    /* newpixel.rgbtGreen = round(fmin(sqrt(tmp.gx ^ 2 + tmp.gy ^ 2), 255)); */
-    interimvalue = tmp.gx ^ 2;
-    interimvalue += tmp.gy ^ 2;
+    /* newpixel.rgbtGreen = round(fmin(sqrt(pow(tmp.gx, 2) + pow(tmp.gy, 2)), 255)); */
+    interimvalue = pow(tmp.gx, 2);
+    interimvalue += pow(tmp.gy, 2);
     interimvalue = sqrt(interimvalue);
     interimvalue = fmin(interimvalue, 255);
     newpixel.rgbtGreen = round(interimvalue);
@@ -329,14 +327,23 @@ RGBTRIPLE calculate_sopel(NEIGHBOURS neighbouring)
     tmp.gx = -neighbouring.topleft.rgbtBlue + neighbouring.topright.rgbtBlue;
     tmp.gx += -2 * neighbouring.left.rgbtBlue + 2 * neighbouring.right.rgbtBlue;
     tmp.gx += -neighbouring.bottomleft.rgbtBlue + neighbouring.bottomright.rgbtBlue;
-    tmp.gy = -neighbouring.topleft.rgbtBlue + neighbouring.bottomright.rgbtBlue;
+    tmp.gy = -neighbouring.topleft.rgbtBlue + neighbouring.bottomleft.rgbtBlue;
     tmp.gy += -2 * neighbouring.top.rgbtBlue + 2 * neighbouring.bottom.rgbtBlue;
     tmp.gy += -neighbouring.topright.rgbtBlue + neighbouring.bottomright.rgbtBlue;
-    /* newpixel.rgbtBlue = round(fmin(sqrt(tmp.gx ^ 2 + tmp.gy ^ 2), 255)); */
-    interimvalue = tmp.gx ^ 2;
-    interimvalue += tmp.gy ^ 2;
+    /* newpixel.rgbtBlue = round(fmin(sqrt(pow(tmp.gx, 2) + pow(tmp.gy, 2)), 255)); */
+    printf("top red is %i %i %i\n", neighbouring.topleft.rgbtBlue, neighbouring.top.rgbtBlue, neighbouring.topright.rgbtBlue);
+    printf("middle is %i %i\n", neighbouring.left.rgbtBlue, neighbouring.right.rgbtBlue);
+    printf("bottom red is %i %i %i\n", neighbouring.bottomleft.rgbtBlue, neighbouring.bottom.rgbtBlue, neighbouring.bottomright.rgbtBlue);
+    printf("tmp.gx is %d before squaring\n", tmp.gx);
+    printf("tmp.gy is %d before squaring\n", tmp.gy);
+    interimvalue = pow(tmp.gx, 2);
+    printf("intvalue is %f after squaring\n", interimvalue);
+    interimvalue += pow(tmp.gy, 2);
+    printf("intvalue is %f after squaring and adding\n", interimvalue);
     interimvalue = sqrt(interimvalue);
+    printf("intvalue is %f after sqrt root\n", interimvalue);
     interimvalue = fmin(interimvalue, 255);
+    printf("intvalue is %f after fmin()\n", interimvalue);
     newpixel.rgbtBlue = round(interimvalue);
 
     return newpixel;
