@@ -203,9 +203,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             }
             else if (i == height - 1 && j == 0) // bottom left corner
             {
-                neighbouring.right = image[i][j + 1];
                 neighbouring.top = image[i - 1][j];
                 neighbouring.topright = image[i - 1][j + 1];
+                neighbouring.right = image[i][j + 1];
             }
             else if (i == 0 && j == width - 1) // top right corner
             {
@@ -215,9 +215,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             }
             else if (i == height - 1 && j == width - 1) // bottom right corner
             {
-                neighbouring.left = image[i][j - 1];
-                neighbouring.top = image[i - 1][j];
                 neighbouring.topleft = image[i - 1][j - 1];
+                neighbouring.top = image[i - 1][j];
+                neighbouring.left = image[i][j - 1];
             }
             else if (i == 0)
             {
@@ -263,6 +263,20 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 neighbouring.bottomright = image[i + 1][j + 1];
             }
             modified_image[i][j] = calculate_sopel(neighbouring);
+            /* printf("i is %i and j is %i\n\n", i, j); */
+            /* printf("Top is %i %i %i, %i %i %i, %i %i %i\n", neighbouring.topleft.rgbtBlue, neighbouring.topleft.rgbtGreen, */
+            /*        neighbouring.topleft.rgbtRed, neighbouring.top.rgbtBlue, neighbouring.top.rgbtGreen, */
+            /*        neighbouring.top.rgbtRed, neighbouring.topright.rgbtBlue, neighbouring.topright.rgbtGreen, */
+            /*        neighbouring.topright.rgbtRed); */
+            /* printf("mid is %i %i %i, %i %i %i, %i %i %i\n", neighbouring.left.rgbtBlue, neighbouring.left.rgbtGreen, */
+            /*        neighbouring.left.rgbtRed, image[i][j].rgbtBlue, image[i][j].rgbtGreen, */
+            /*        image[i][j].rgbtRed, neighbouring.right.rgbtBlue, neighbouring.right.rgbtGreen, */
+            /*        neighbouring.right.rgbtRed); */
+            /* printf("Bot is %i %i %i, %i %i %i, %i %i %i\n", neighbouring.bottomleft.rgbtBlue, neighbouring.bottomleft.rgbtGreen, */
+            /*        neighbouring.bottomleft.rgbtRed, neighbouring.bottom.rgbtBlue, neighbouring.bottom.rgbtGreen, */
+            /*        neighbouring.bottom.rgbtRed, neighbouring.bottomright.rgbtBlue, neighbouring.bottomright.rgbtGreen, */
+            /*        neighbouring.bottomright.rgbtRed); */
+            /* printf("\n\n\n"); */
         }
     }
 
@@ -331,28 +345,36 @@ RGBTRIPLE calculate_sopel(NEIGHBOURS neighbouring)
     tmp.gy += -2 * neighbouring.top.rgbtBlue + 2 * neighbouring.bottom.rgbtBlue;
     tmp.gy += -neighbouring.topright.rgbtBlue + neighbouring.bottomright.rgbtBlue;
     /* newpixel.rgbtBlue = round(fmin(sqrt(pow(tmp.gx, 2) + pow(tmp.gy, 2)), 255)); */
-    printf("top red is %i %i %i\n", neighbouring.topleft.rgbtBlue, neighbouring.top.rgbtBlue, neighbouring.topright.rgbtBlue);
-    printf("middle is %i %i\n", neighbouring.left.rgbtBlue, neighbouring.right.rgbtBlue);
-    printf("bottom red is %i %i %i\n", neighbouring.bottomleft.rgbtBlue, neighbouring.bottom.rgbtBlue, neighbouring.bottomright.rgbtBlue);
-    printf("tmp.gx is %d before squaring\n", tmp.gx);
-    printf("tmp.gy is %d before squaring\n", tmp.gy);
+    /* printf("top red is %i %i %i\n", neighbouring.topleft.rgbtBlue, neighbouring.top.rgbtBlue,
+     * neighbouring.topright.rgbtBlue); */
+    /* printf("middle is %i %i\n", neighbouring.left.rgbtBlue, neighbouring.right.rgbtBlue); */
+    /* printf("bottom red is %i %i %i\n", neighbouring.bottomleft.rgbtBlue, neighbouring.bottom.rgbtBlue,
+     * neighbouring.bottomright.rgbtBlue); */
+    /* printf("tmp.gx is %d before squaring\n", tmp.gx); */
+    /* printf("tmp.gy is %d before squaring\n", tmp.gy); */
     interimvalue = pow(tmp.gx, 2);
-    printf("intvalue is %f after squaring\n", interimvalue);
+    /* printf("intvalue is %f after squaring\n", interimvalue); */
     interimvalue += pow(tmp.gy, 2);
-    printf("intvalue is %f after squaring and adding\n", interimvalue);
+    /* printf("intvalue is %f after squaring and adding\n", interimvalue); */
     interimvalue = sqrt(interimvalue);
-    printf("intvalue is %f after sqrt root\n", interimvalue);
+    /* printf("intvalue is %f after sqrt root\n", interimvalue); */
     interimvalue = fmin(interimvalue, 255);
-    printf("intvalue is %f after fmin()\n", interimvalue);
+    /* printf("intvalue is %f after fmin()\n", interimvalue); */
     newpixel.rgbtBlue = round(interimvalue);
 
     return newpixel;
 }
 
-/* void test_sopel(void) */
-/* { */
-/*     NEIGHBOURS neighbouring = {{0, 10, 25},  {0, 10, 30},  {40, 60, 80}, {20, 30, 90}, */
-/*                                {80, 70, 90}, {20, 20, 40}, {30, 10, 30}, {50, 40, 10}}; */
-/*     RGBTRIPLE test = calculate_sopel(neighbouring); */
-/*     printf("RGB is %i, %i, %i\n", test.rgbtRed, test.rgbtGreen, test.rgbtBlue); */
-/* } */
+void test_sopel(void)
+{
+    NEIGHBOURS neighbouring = {{0, 10, 25},  {0, 10, 30},  {40, 60, 80}, {20, 30, 90},
+                               {80, 70, 90}, {20, 20, 40}, {30, 10, 30}, {50, 40, 10}};
+    RGBTRIPLE test = calculate_sopel(neighbouring);
+    printf("RGB is %i, %i, %i\n", test.rgbtRed, test.rgbtGreen, test.rgbtBlue);
+}
+void test_edge(void)
+{
+    RGBTRIPLE image[3][3] = {{{0, 10, 25},  {0, 10, 30},  {40, 60, 80}}, {{20, 30, 90}, {30, 40, 100},
+                             {80, 70, 90}}, {{20, 20, 40}, {30, 10, 30}, {50, 40, 10}}};
+    edges(3, 3, image);
+}
