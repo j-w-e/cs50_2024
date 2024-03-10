@@ -1,5 +1,6 @@
 #include "helpers.h"
 #include <math.h>
+#include <stdio.h>
 
 typedef struct
 {
@@ -305,7 +306,7 @@ RGBTRIPLE calculate_sopel(NEIGHBOURS neighbouring)
     tmp.gy = -neighbouring.topleft.rgbtRed + neighbouring.bottomright.rgbtRed;
     tmp.gy += -2 * neighbouring.top.rgbtRed + 2 * neighbouring.bottom.rgbtRed;
     tmp.gy += -neighbouring.topright.rgbtRed + neighbouring.bottomright.rgbtRed;
-    newpixel.rgbtRed = round(fmin(sqrt(tmp.gx ^ 2 + tmp.gy ^ 2), 255));
+    /* newpixel.rgbtRed = round(fmin(sqrt(tmp.gx ^ 2 + tmp.gy ^ 2), 255)); */
     interimvalue = tmp.gx ^ 2;
     interimvalue += tmp.gy ^ 2;
     interimvalue = sqrt(interimvalue);
@@ -318,7 +319,7 @@ RGBTRIPLE calculate_sopel(NEIGHBOURS neighbouring)
     tmp.gy = -neighbouring.topleft.rgbtGreen + neighbouring.bottomright.rgbtGreen;
     tmp.gy += -2 * neighbouring.top.rgbtGreen + 2 * neighbouring.bottom.rgbtGreen;
     tmp.gy += -neighbouring.topright.rgbtGreen + neighbouring.bottomright.rgbtGreen;
-    newpixel.rgbtGreen = round(fmin(sqrt(tmp.gx ^ 2 + tmp.gy ^ 2), 255));
+    /* newpixel.rgbtGreen = round(fmin(sqrt(tmp.gx ^ 2 + tmp.gy ^ 2), 255)); */
     interimvalue = tmp.gx ^ 2;
     interimvalue += tmp.gy ^ 2;
     interimvalue = sqrt(interimvalue);
@@ -331,7 +332,7 @@ RGBTRIPLE calculate_sopel(NEIGHBOURS neighbouring)
     tmp.gy = -neighbouring.topleft.rgbtBlue + neighbouring.bottomright.rgbtBlue;
     tmp.gy += -2 * neighbouring.top.rgbtBlue + 2 * neighbouring.bottom.rgbtBlue;
     tmp.gy += -neighbouring.topright.rgbtBlue + neighbouring.bottomright.rgbtBlue;
-    newpixel.rgbtBlue = round(fmin(sqrt(tmp.gx ^ 2 + tmp.gy ^ 2), 255));
+    /* newpixel.rgbtBlue = round(fmin(sqrt(tmp.gx ^ 2 + tmp.gy ^ 2), 255)); */
     interimvalue = tmp.gx ^ 2;
     interimvalue += tmp.gy ^ 2;
     interimvalue = sqrt(interimvalue);
@@ -340,3 +341,11 @@ RGBTRIPLE calculate_sopel(NEIGHBOURS neighbouring)
 
     return newpixel;
 }
+
+/* void test_sopel(void) */
+/* { */
+/*     NEIGHBOURS neighbouring = {{0, 10, 25},  {0, 10, 30},  {40, 60, 80}, {20, 30, 90}, */
+/*                                {80, 70, 90}, {20, 20, 40}, {30, 10, 30}, {50, 40, 10}}; */
+/*     RGBTRIPLE test = calculate_sopel(neighbouring); */
+/*     printf("RGB is %i, %i, %i\n", test.rgbtRed, test.rgbtGreen, test.rgbtBlue); */
+/* } */
